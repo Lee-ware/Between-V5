@@ -1,0 +1,17 @@
+{
+  "name": "between",
+  "private": true,
+  "version": "5.0.0",
+  "description": "BETWEEN \u2014 curiosity, choice, knowledge, games, memory and connection. Static PWA with optional anonymous crowd data.",
+  "dependencies": {
+    "@netlify/blobs": "11.1.0"
+  },
+  "scripts": {
+    "phase15:gate": "node tools/phase15-gate.mjs",
+    "phase2c:brain-audit": "node tools/phase2c-brain-audit.mjs",
+    "phase2d:brain-adversarial": "node tools/phase2d-brain-adversarial.mjs",
+    "brain:progression": "node tools/brain-progression-audit.mjs",
+    "phase2e:regression": "node tools/phase2e-full-regression.mjs",
+    "phase3:audit": "node tools/phase3-final-engineering-audit.mjs"
+  }
+}

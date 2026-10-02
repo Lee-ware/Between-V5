@@ -1,0 +1,45 @@
+{
+  "gate": "BETWEEN Phase 1.5 Engineering Gate",
+  "phase": "1.5",
+  "purpose": "Lock the engineering baseline and encode the content volume that Phase 2 is expected to replace with.",
+  "phase2": {
+    "normalModeFinalCounts": {
+      "pick_one": 150,
+      "knowledge": 99,
+      "scenario": 75,
+      "estimation": 100,
+      "prediction": 100,
+      "random": 100
+    },
+    "normalModeFinalTotal": 624,
+    "archivedMajoritySourceCount": 100,
+    "brainPlayerFacingExperiences": 20
+  },
+  "phase1Baseline": {
+    "appVersion": "5.0.0",
+    "contentVersion": "2.0",
+    "zip": "BETWEEN-v5.0.0-phase1-final.zip",
+    "zipSha256": "a940949ec9d9723375c15b72b709ef8874b8b7a1cd942a24f2169e0a7a61a124",
+    "modeCounts": {
+      "pick_one": 149,
+      "knowledge": 134,
+      "scenario": 65,
+      "estimation": 57,
+      "prediction": 53,
+      "random": 45,
+      "brain": 60,
+      "majority": 60
+    },
+    "total": 623
+  },
+  "sourceFiles": {
+    "nonBrain": {
+      "path": "BETWEEN-non-brain-content.txt",
+      "sha256": "e7e5f485d64c3d10d819211ab3f037d7a2491551cee96840d602af363110c1c4"
+    },
+    "brain": {
+      "path": "BETWEEN-Brain-content.txt",
+      "sha256": "6baf8aa2262c8a589652476a47f472d989349d1cbc8941407356c2639d60d832"
+    }
+  }
+}

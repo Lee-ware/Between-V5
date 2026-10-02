@@ -1,0 +1,139 @@
+{
+  "phase": "2C",
+  "result": "PASS",
+  "counts": {
+    "brain": 20,
+    "estimation": 100,
+    "knowledge": 99,
+    "majority": 100,
+    "pick_one": 150,
+    "prediction": 100,
+    "random": 100,
+    "scenario": 75
+  },
+  "normalCounts": {
+    "pick_one": 150,
+    "knowledge": 99,
+    "scenario": 75,
+    "majority": 100,
+    "estimation": 100,
+    "prediction": 100,
+    "random": 100,
+    "brain": 20
+  },
+  "brainTypes": [
+    "visual_search",
+    "memory_grid",
+    "sequence",
+    "reverse",
+    "rule_switch",
+    "go_no_go",
+    "odd_one",
+    "change_detection",
+    "flash_recall",
+    "spatial",
+    "path",
+    "classification",
+    "number_trap",
+    "symbol_mapping",
+    "mirror",
+    "pattern",
+    "rapid_sort",
+    "memory_distraction",
+    "one_second",
+    "final_boss"
+  ],
+  "generatorFuzz": {
+    "seeds": 100,
+    "levels": 5,
+    "cases": 10000
+  },
+  "deterministic": true,
+  "adversarial": {
+    "staleStageFinishGuard": true,
+    "stageScopedTimers": true,
+    "leaveCancellation": true,
+    "genericStageDeadline": true,
+    "classificationTimerInvalidation": true,
+    "noDeadSequenceSpan": true
+  },
+  "lifecycle": {
+    "progression": [
+      {
+        "run": 1,
+        "level": 0,
+        "generatorLevel": 1,
+        "timed": false,
+        "timeLimit": null
+      },
+      {
+        "run": 10,
+        "level": 0,
+        "generatorLevel": 1,
+        "timed": false,
+        "timeLimit": null
+      },
+      {
+        "run": 11,
+        "level": 1,
+        "generatorLevel": 1,
+        "timed": true,
+        "timeLimit": 999
+      },
+      {
+        "run": 21,
+        "level": 2,
+        "generatorLevel": 2,
+        "timed": true,
+        "timeLimit": 999
+      },
+      {
+        "run": 31,
+        "level": 3,
+        "generatorLevel": 3,
+        "timed": true,
+        "timeLimit": 999
+      },
+      {
+        "run": 40,
+        "level": 4,
+        "generatorLevel": 4,
+        "timed": true,
+        "timeLimit": 999
+      },
+      {
+        "run": 50,
+        "level": 5,
+        "generatorLevel": 5,
+        "timed": true,
+        "timeLimit": 999
+      }
+    ],
+    "sameRunLevels": [
+      2,
+      2,
+      2
+    ],
+    "dailyLevels": [
+      1,
+      1,
+      2,
+      2,
+      3
+    ]
+  },
+  "integration": {
+    "storageBrainRuns": true,
+    "storageSchema5": true,
+    "backupBrainRuns": true,
+    "appBrainRun": true,
+    "appBrainScore": true,
+    "dailyBrain": true,
+    "dailyContext": true,
+    "brainCache": true,
+    "brainLibraryExcluded": true,
+    "adaptiveNormal": true
+  },
+  "issues": [],
+  "notes": []
+}

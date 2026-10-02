@@ -1,0 +1,104 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "run": 1,
+      "level": 0,
+      "generatorLevel": 1,
+      "timed": false,
+      "timeLimit": null
+    },
+    {
+      "run": 5,
+      "level": 0,
+      "generatorLevel": 1,
+      "timed": false,
+      "timeLimit": null
+    },
+    {
+      "run": 10,
+      "level": 0,
+      "generatorLevel": 1,
+      "timed": false,
+      "timeLimit": null
+    },
+    {
+      "run": 11,
+      "level": 1,
+      "generatorLevel": 1,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 20,
+      "level": 1,
+      "generatorLevel": 1,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 21,
+      "level": 2,
+      "generatorLevel": 2,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 30,
+      "level": 2,
+      "generatorLevel": 2,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 31,
+      "level": 3,
+      "generatorLevel": 3,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 39,
+      "level": 3,
+      "generatorLevel": 3,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 40,
+      "level": 4,
+      "generatorLevel": 4,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 49,
+      "level": 4,
+      "generatorLevel": 4,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 50,
+      "level": 5,
+      "generatorLevel": 5,
+      "timed": true,
+      "timeLimit": 5000
+    },
+    {
+      "run": 75,
+      "level": 5,
+      "generatorLevel": 5,
+      "timed": true,
+      "timeLimit": 5000
+    }
+  ],
+  "failures": [],
+  "config": {
+    "learningRuns": 10,
+    "level2StartRun": 21,
+    "level3StartRun": 31,
+    "level4StartRun": 40,
+    "level5StartRun": 50
+  }
+}

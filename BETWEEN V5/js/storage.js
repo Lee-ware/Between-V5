@@ -1,0 +1,300 @@
+// ===================== STORAGE (local-first, versioned) =====================
+
+const Storage = (() => {
+  const VERSION = 'v1';
+  const NS = `between:${VERSION}`;
+
+  const KEYS = {
+    history: `${NS}:history`,      // array of {id, mode, ts, result}
+    stats: `${NS}:stats`,          // aggregated stats object
+    settings: `${NS}:settings`,    // user preferences
+    progress: `${NS}:progress`,    // seen ids, recent ids, cooldowns
+    session: `${NS}:session`,      // in-progress session state
+    tendency: `${NS}:tendency`,    // lightweight local choice-pattern tracking
+    moments: `${NS}:moments`,      // personal saved-experience archive
+    timeCapsules: `${NS}:capsules`, // answers saved to revisit later
+    crowdVoted: `${NS}:crowdvoted`, // which Majority items this device already voted on
+    brandEasterEgg: `${NS}:brand_easter_egg`, // rare logo easter egg shown once
+    libraryComplete: `${NS}:library_complete`,
+    reports: `${NS}:reports`,
+    packs: `${NS}:packs`,
+    predictions: `${NS}:predictions`, // locally stored future predictions
+    brainRuns: `${NS}:brain_runs`, // recent Brain run summaries
+  };
+
+  // ---- Storage schema versioning & migrations ----
+  // This is a lightweight migration system for the localStorage shape. The
+  // namespace version and schema version are independent so future changes can
+  // migrate data without breaking the app's stable storage keys.
+  // When a future version changes what's stored (e.g. adding Moments or Time
+  // Capsule data), bump SCHEMA_VERSION and add a numbered function to
+  // MIGRATIONS below — runMigrations() will call every step between the
+  // person's stored version and the current one, in order, once at boot.
+  const SCHEMA_VERSION = 5;
+  const SCHEMA_KEY = 'between:schema_version';
+  const CONTENT_VERSION = String((window.BETWEEN_DATA && window.BETWEEN_DATA.version) || 'unknown');
+  const MIGRATIONS = {
+    2: () => {
+      // v2 is additive: older installs keep their existing local data and gain
+      // empty containers for reports/packs. Large structured archives remain
+      // local-first; the API is ready for an IndexedDB backend without changing callers.
+    },
+    3: () => {
+      // v3 separates "shown" progress from "actually answered" progress.
+      // The old history log is capped at 500 entries, so reconstruct the unique
+      // answered-id set from whatever history still exists, then keep it separate
+      // from seenIds so merely opening a question never counts as answering it.
+      const history = read(KEYS.history, []);
+      const progress = read(KEYS.progress, defaultProgress());
+      const answered = new Set(Array.isArray(progress.answeredIds) ? progress.answeredIds : []);
+      if (Array.isArray(history)) {
+        history.forEach(entry => {
+          if (entry && typeof entry.id === 'string' && entry.id) answered.add(entry.id);
+        });
+      }
+      progress.answeredIds = Array.from(answered);
+      progress.answeredContentVersion = CONTENT_VERSION;
+      write(KEYS.progress, progress);
+    },
+    4: () => {
+      // v4 adds the local prediction ledger. It is additive and never
+      // overwrites an existing ledger from a newer install.
+      if (localStorage.getItem(KEYS.predictions) === null) write(KEYS.predictions, []);
+    },
+    5: () => {
+      // v5 adds recent Brain run summaries for local stats/history.
+      if (localStorage.getItem(KEYS.brainRuns) === null) write(KEYS.brainRuns, []);
+    },
+  };
+
+  function runMigrations() {
+    let from;
+    try {
+      const raw = localStorage.getItem(SCHEMA_KEY);
+      from = raw === null ? 0 : JSON.parse(raw);
+    } catch (e) {
+      from = SCHEMA_VERSION;
+    }
+    for (let v = from + 1; v <= SCHEMA_VERSION; v++) {
+      if (typeof MIGRATIONS[v] === 'function') {
+        try { MIGRATIONS[v](); console.info(`[BETWEEN] storage migrated to schema v${v}`); }
+        catch (e) { console.warn(`[BETWEEN] storage migration to v${v} failed`, e); }
+      }
+    }
+    try { localStorage.setItem(SCHEMA_KEY, JSON.stringify(SCHEMA_VERSION)); } catch (e) { /* ignore */ }
+  }
+  runMigrations();
+
+  function syncAnsweredContentVersion() {
+    const progress = read(KEYS.progress, null);
+    if (!progress || typeof progress !== 'object' || Array.isArray(progress)) return;
+    if (!Object.prototype.hasOwnProperty.call(progress, 'answeredContentVersion')) {
+      progress.answeredContentVersion = CONTENT_VERSION;
+      write(KEYS.progress, progress);
+      return;
+    }
+    if (progress.answeredContentVersion !== CONTENT_VERSION) {
+      // Content replacement changes what 'the whole library' means. Keep the
+      // history/stats, but reset unique-answer completion for the new content set.
+      progress.answeredIds = [];
+      progress.answeredContentVersion = CONTENT_VERSION;
+      write(KEYS.progress, progress);
+      write(KEYS.libraryComplete, false);
+    }
+  }
+  syncAnsweredContentVersion();
+
+  function read(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (raw === null) return fallback;
+      return JSON.parse(raw);
+    } catch (e) {
+      console.warn('Storage read failed', key, e);
+      return fallback;
+    }
+  }
+
+  function write(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch (e) {
+      console.warn('Storage write failed', key, e);
+      return false;
+    }
+  }
+
+  function defaultStats() {
+    return {
+      answered: 0,
+      correctKnowledge: 0,
+      totalKnowledge: 0,
+      pickOneCount: 0,
+      scenarioCount: 0,
+      majorityCorrect: 0,
+      majorityTotal: 0,
+      estimationTotal: 0,
+      estimationAccuracySum: 0,
+      predictionCount: 0,
+      randomCount: 0,
+      brainBestScore: 0,
+      brainCount: 0,
+      currentStreak: 0,
+      longestStreak: 0,
+      byMode: {},       // mode -> count
+      byCategory: {},   // category -> {count}
+      closestEstimatePct: null,
+      lastActiveDate: null,
+      daysActive: [],   // array of date strings
+      firstSessionComplete: false,
+      totalSessions: 0,
+    };
+  }
+
+  function defaultProgress() {
+    return {
+      seenIds: [],          // all-time shown ids
+      answeredIds: [],      // all-time ids that were actually answered/committed
+      recentIds: [],         // last ~15 ids for cooldown
+      recentSimilarity: [],  // last ~6 similarity groups
+      recentModes: [],       // last ~4 modes
+      recentCategories: [],  // last ~5 categories
+      recentMoods: [],       // last ~4 moods (serious/chaotic/playful/...)
+      dailyDoneDates: {},    // dateKey -> {pick:true, knowledge:true, ...}
+      onboardingIndex: 0,    // how far into curated first-session sequence
+      onboardingDone: false,
+      installNudgeDismissed: false,
+    };
+  }
+
+  function defaultSettings() {
+    return {
+      sound: true,
+      reducedMotion: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      theme: 'dark',
+      personalization: true,
+    };
+  }
+
+  function defaultTendency() {
+    return {}; // axis name -> { poleName: count, ... }
+  }
+
+  const api = {
+    KEYS,
+    getHistory: () => read(KEYS.history, []),
+    setHistory: (h) => write(KEYS.history, Array.isArray(h) ? h.slice(-500) : []),
+    addHistory: (entry) => {
+      const h = api.getHistory();
+      h.push(entry);
+      if (h.length > 500) h.shift();
+      write(KEYS.history, h);
+    },
+    getStats: () => read(KEYS.stats, defaultStats()),
+    setStats: (s) => write(KEYS.stats, s),
+    updateStats: (mutator) => {
+      const s = api.getStats();
+      mutator(s);
+      write(KEYS.stats, s);
+      return s;
+    },
+    getSettings: () => read(KEYS.settings, defaultSettings()),
+    setSettings: (s) => write(KEYS.settings, s),
+    updateSettings: (mutator) => {
+      const s = api.getSettings();
+      mutator(s);
+      write(KEYS.settings, s);
+      return s;
+    },
+    getProgress: () => read(KEYS.progress, defaultProgress()),
+    markAnswered: (itemId) => {
+      if (typeof itemId !== 'string' || !itemId) return false;
+      const p = api.getProgress();
+      if (!Array.isArray(p.answeredIds)) p.answeredIds = [];
+      if (p.answeredIds.includes(itemId)) return false;
+      p.answeredIds.push(itemId);
+      write(KEYS.progress, p);
+      return true;
+    },
+    setProgress: (p) => write(KEYS.progress, p),
+    updateProgress: (mutator) => {
+      const p = api.getProgress();
+      mutator(p);
+      write(KEYS.progress, p);
+      return p;
+    },
+    getSession: () => read(KEYS.session, null),
+    setSession: (s) => write(KEYS.session, s),
+    clearSession: () => localStorage.removeItem(KEYS.session),
+
+    getTendency: () => read(KEYS.tendency, defaultTendency()),
+    setTendency: (t) => write(KEYS.tendency, t),
+    updateTendency: (mutator) => {
+      const t = api.getTendency();
+      mutator(t);
+      write(KEYS.tendency, t);
+      return t;
+    },
+
+    getMoments: () => read(KEYS.moments, []),
+    setMoments: (m) => write(KEYS.moments, Array.isArray(m) ? m.slice(-300) : []),
+    updateMoments: (mutator) => {
+      const m = api.getMoments();
+      mutator(m);
+      // Bound growth — a personal archive, not an infinite log.
+      const capped = m.length > 300 ? m.slice(m.length - 300) : m;
+      write(KEYS.moments, capped);
+      return capped;
+    },
+
+    getTimeCapsules: () => read(KEYS.timeCapsules, []),
+    setTimeCapsules: (c) => write(KEYS.timeCapsules, Array.isArray(c) ? c.slice(-200) : []),
+    updateTimeCapsules: (mutator) => {
+      const c = api.getTimeCapsules();
+      mutator(c);
+      const capped = c.length > 200 ? c.slice(c.length - 200) : c;
+      write(KEYS.timeCapsules, capped);
+      return capped;
+    },
+
+    getReports: () => read(KEYS.reports, []),
+    setReports: (a) => write(KEYS.reports, Array.isArray(a) ? a.slice(-300) : []),
+    updateReports: (mutator) => { const a = api.getReports(); mutator(a); write(KEYS.reports, a.length > 300 ? a.slice(-300) : a); return a; },
+    getPacks: () => read(KEYS.packs, []),
+    setPacks: (a) => write(KEYS.packs, Array.isArray(a) ? a.slice(-50) : []),
+    updatePacks: (mutator) => { const a = api.getPacks(); mutator(a); write(KEYS.packs, a.length > 50 ? a.slice(-50) : a); return a; },
+
+    getPredictions: () => read(KEYS.predictions, []),
+    setPredictions: (a) => write(KEYS.predictions, Array.isArray(a) ? a.slice(-300) : []),
+    updatePredictions: (mutator) => { const a = api.getPredictions(); mutator(a); const capped = a.length > 300 ? a.slice(-300) : a; write(KEYS.predictions, capped); return capped; },
+
+    getBrainRuns: () => read(KEYS.brainRuns, []),
+    setBrainRuns: (a) => write(KEYS.brainRuns, Array.isArray(a) ? a.slice(-100) : []),
+    addBrainRun: (run) => {
+      if (!run || typeof run !== 'object') return false;
+      const a = api.getBrainRuns(); a.push(run); write(KEYS.brainRuns, a.length > 100 ? a.slice(-100) : a); return true;
+    },
+
+    getCrowdVoted: () => read(KEYS.crowdVoted, []),
+    getBrandEasterEggSeen: () => read(KEYS.brandEasterEgg, false) === true,
+    getLibraryComplete: () => read(KEYS.libraryComplete, false) === true,
+    markLibraryComplete: () => write(KEYS.libraryComplete, true),
+    markBrandEasterEggSeen: () => write(KEYS.brandEasterEgg, true),
+    addCrowdVoted: (itemId) => {
+      const arr = api.getCrowdVoted();
+      if (!arr.includes(itemId)) arr.push(itemId);
+      const capped = arr.length > 200 ? arr.slice(arr.length - 200) : arr;
+      write(KEYS.crowdVoted, capped);
+    },
+
+    resetAll: () => {
+      Object.values(KEYS).filter(k => k !== KEYS.brandEasterEgg).forEach(k => localStorage.removeItem(k));
+    },
+
+    SCHEMA_VERSION,
+    defaultStats, defaultProgress, defaultSettings, defaultTendency,
+  };
+
+  return api;
+})();

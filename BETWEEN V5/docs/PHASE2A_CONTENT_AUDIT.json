@@ -1,0 +1,47 @@
+{
+  "phase": "2A",
+  "result": "BLOCKED",
+  "counts": {
+    "pick_one": 150,
+    "knowledge": 99,
+    "scenario": 75,
+    "estimation": 100,
+    "prediction": 100,
+    "random": 100,
+    "majority": 100,
+    "brain": 20,
+    "total": 744
+  },
+  "expected": {
+    "pick_one": 150,
+    "knowledge": 99,
+    "scenario": 75,
+    "estimation": 100,
+    "prediction": 100,
+    "random": 100,
+    "majority": 100,
+    "temporary_brain": 60
+  },
+  "knowledge_removed": [
+    25
+  ],
+  "replacement_verified": true,
+  "issues": [
+    "temporary brain count changed during 2A: 20",
+    "v5-prediction-041: invalid prediction shape numeric",
+    "v5-prediction-042: invalid prediction shape numeric",
+    "v5-prediction-043: invalid prediction shape numeric",
+    "v5-prediction-044: invalid prediction shape numeric",
+    "v5-prediction-045: invalid prediction shape numeric",
+    "v5-prediction-046: invalid prediction shape numeric",
+    "v5-prediction-047: invalid prediction shape numeric",
+    "v5-prediction-048: invalid prediction shape numeric",
+    "v5-prediction-049: invalid prediction shape numeric",
+    "v5-prediction-050: invalid prediction shape numeric"
+  ],
+  "notes": [
+    "46 prediction records do not have an explicit resolution_window in the source wording; preserve as a Phase 2B integration/content decision rather than inventing dates.",
+    "10 prediction records are numeric/open-ended prompts and need a numeric prediction UI in Phase 2B.",
+    "9 estimation records have source answers without a numeric anchor; the source answer text is preserved instead of inventing a number."
+  ]
+}

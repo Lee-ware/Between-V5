@@ -1,0 +1,408 @@
+{
+  "gate": "BETWEEN Phase 1.5 Engineering Gate",
+  "generatedAt": "2026-10-02T09:33:27.612Z",
+  "root": "/mnt/data/BETWEEN-v5.0.0-phase1.5-gate",
+  "sourceDir": "/mnt/data",
+  "statuses": [
+    {
+      "name": "source:pick_one:sequential-numbering",
+      "state": "pass",
+      "detail": "150 numbered entries"
+    },
+    {
+      "name": "source:knowledge:sequential-numbering",
+      "state": "pass",
+      "detail": "100 numbered entries"
+    },
+    {
+      "name": "source:scenario:sequential-numbering",
+      "state": "pass",
+      "detail": "75 numbered entries"
+    },
+    {
+      "name": "source:majority:sequential-numbering",
+      "state": "pass",
+      "detail": "100 numbered entries"
+    },
+    {
+      "name": "source:estimation:sequential-numbering",
+      "state": "pass",
+      "detail": "100 numbered entries"
+    },
+    {
+      "name": "source:prediction:sequential-numbering",
+      "state": "pass",
+      "detail": "100 numbered entries"
+    },
+    {
+      "name": "source:random:sequential-numbering",
+      "state": "pass",
+      "detail": "100 numbered entries"
+    },
+    {
+      "name": "source:knowledge:explicit-removals",
+      "state": "pass",
+      "detail": "marked REMOVE: [25]"
+    },
+    {
+      "name": "source:non-brain:sha256",
+      "state": "pass",
+      "detail": "sha256=e7e5f485d64c3d10d819211ab3f037d7a2491551cee96840d602af363110c1c4"
+    },
+    {
+      "name": "source:normal:counts",
+      "state": "pass",
+      "detail": "effective={\"pick_one\":150,\"knowledge\":99,\"scenario\":75,\"majority\":100,\"estimation\":100,\"prediction\":100,\"random\":100}"
+    },
+    {
+      "name": "source:archived-majority:count",
+      "state": "pass",
+      "detail": "majority source=100"
+    },
+    {
+      "name": "source:brain-experiences:sequential-numbering",
+      "state": "pass",
+      "detail": "20 numbered entries"
+    },
+    {
+      "name": "source:brain:sha256",
+      "state": "pass",
+      "detail": "sha256=6baf8aa2262c8a589652476a47f472d989349d1cbc8941407356c2639d60d832"
+    },
+    {
+      "name": "source:brain:experience-count",
+      "state": "pass",
+      "detail": "20 player-facing experiences"
+    },
+    {
+      "name": "baseline:app-version",
+      "state": "pass",
+      "detail": "app=5.0.0"
+    },
+    {
+      "name": "baseline:data-file-present",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "data:json-parse",
+      "state": "pass",
+      "detail": "version=2.0 total=623"
+    },
+    {
+      "name": "data:declared-total",
+      "state": "pass",
+      "detail": "declared=623 actual=623"
+    },
+    {
+      "name": "data:mode-counts-match-declared",
+      "state": "pass",
+      "detail": "declared={\"brain\":60,\"estimation\":57,\"knowledge\":134,\"majority\":60,\"pick_one\":149,\"prediction\":53,\"random\":45,\"scenario\":65} actual={\"pick_one\":149,\"knowledge\":134,\"scenario\":65,\"majority\":60,\"estimation\":57,\"prediction\":53,\"random\":45,\"brain\":60}"
+    },
+    {
+      "name": "data:duplicate-ids",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "data:duplicate-prompts",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "data:required-fields",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "data:mode-allowlist",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "data:structural-schema",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "data:baseline-counts",
+      "state": "pass",
+      "detail": "actual={\"pick_one\":149,\"knowledge\":134,\"scenario\":65,\"majority\":60,\"estimation\":57,\"prediction\":53,\"random\":45,\"brain\":60}"
+    },
+    {
+      "name": "data:phase2-replacement-not-applied",
+      "state": "warn",
+      "detail": "Current Phase 1 dataset remains 623 items; Phase 2 target is 624 normal-mode records plus separate Brain experience definitions."
+    },
+    {
+      "name": "static:index-local-references",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:manifest-icons",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:manifest-standalone",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:manifest-scope",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:cache-version-consistency",
+      "state": "pass",
+      "detail": "between-v5.0.0-phase1 vs between-v5.0.0-phase1"
+    },
+    {
+      "name": "static:service-worker-precache-unique",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:service-worker-precache-existing",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:service-worker-syntax",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:javascript-syntax",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:netlify-publish",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:security-headers",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "static:csp-no-eval",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "security:no-eval-newfunction-documentwrite",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "security:user-controlled-html-helpers-present",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "security:csp-connect-src-self",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "security:dynamic-html-review",
+      "state": "pass",
+      "detail": "all interpolation sinks are escaped or classified internal/static"
+    },
+    {
+      "name": "security:storage-id-html-attributes-escaped",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "behavior:all-active-modes-nonempty",
+      "state": "pass",
+      "detail": "{\"pick_one\":149,\"knowledge\":134,\"scenario\":65,\"estimation\":57,\"prediction\":53,\"random\":45,\"brain\":60}"
+    },
+    {
+      "name": "behavior:mode-selection",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "behavior:surprise-excludes-archived-majority",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "behavior:daily-deterministic-same-session",
+      "state": "pass",
+      "detail": "between_0264|between_0403|between_0560"
+    },
+    {
+      "name": "behavior:answered-id-dedup",
+      "state": "pass",
+      "detail": "first=true second=false"
+    },
+    {
+      "name": "behavior:seen-and-recent-progress-updates",
+      "state": "pass",
+      "detail": "seen=401 recent=15"
+    },
+    {
+      "name": "behavior:recent-state-capped",
+      "state": "pass",
+      "detail": "recent=15/4/5/4"
+    },
+    {
+      "name": "behavior:corrupt-progress-recovery",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "behavior:pack-import-shape-sanitized",
+      "state": "pass",
+      "detail": ""
+    },
+    {
+      "name": "gate:decision",
+      "state": "pass",
+      "detail": "Phase 1.5 engineering gate passed with no automated blockers. Phase 2 content replacement remains intentionally unapplied."
+    }
+  ],
+  "sourceContent": {
+    "nonBrain": {
+      "sha256": "e7e5f485d64c3d10d819211ab3f037d7a2491551cee96840d602af363110c1c4",
+      "rawCounts": {
+        "pick_one": 150,
+        "knowledge": 100,
+        "scenario": 75,
+        "majority": 100,
+        "estimation": 100,
+        "prediction": 100,
+        "random": 100
+      },
+      "exclusions": {
+        "knowledge": [
+          25
+        ]
+      },
+      "effectiveCounts": {
+        "pick_one": 150,
+        "knowledge": 99,
+        "scenario": 75,
+        "majority": 100,
+        "estimation": 100,
+        "prediction": 100,
+        "random": 100
+      },
+      "expectedFinalCounts": {
+        "pick_one": 150,
+        "knowledge": 99,
+        "scenario": 75,
+        "estimation": 100,
+        "prediction": 100,
+        "random": 100
+      },
+      "finalNormalTotal": 624
+    },
+    "brain": {
+      "sha256": "6baf8aa2262c8a589652476a47f472d989349d1cbc8941407356c2639d60d832",
+      "experiences": 20,
+      "expected": 20
+    }
+  },
+  "baseline": {
+    "appVersion": "5.0.0",
+    "dataHash": "6c928d87f968fed22bd931688cbbfe8915c4eb5f1cdfd4c7b0c1103e92b3a2df"
+  },
+  "static": {
+    "indexRefs": [
+      "manifest.webmanifest",
+      "icons/icon-192.png",
+      "icons/icon-192.png",
+      "css/style.css",
+      "icons/between-avatar.svg",
+      "js/boot-guard.js",
+      "js/data.js",
+      "js/version.js",
+      "js/utils.js",
+      "js/capabilities.js",
+      "js/storage.js",
+      "js/scoring.js",
+      "js/tendency.js",
+      "js/moments.js",
+      "js/timecapsule.js",
+      "js/reports.js",
+      "js/packs.js",
+      "js/share.js",
+      "js/backup.js",
+      "js/crowd.js",
+      "js/engine.js",
+      "js/passthephone.js",
+      "js/modes.js",
+      "js/screens.js",
+      "js/diagnostics.js",
+      "js/app.js"
+    ],
+    "precache": {
+      "count": 36,
+      "duplicateEntries": [],
+      "missingEntries": []
+    }
+  },
+  "data": {
+    "declaredTotal": 623,
+    "actualTotal": 623,
+    "declaredModes": {
+      "brain": 60,
+      "estimation": 57,
+      "knowledge": 134,
+      "majority": 60,
+      "pick_one": 149,
+      "prediction": 53,
+      "random": 45,
+      "scenario": 65
+    },
+    "actualModes": {
+      "pick_one": 149,
+      "knowledge": 134,
+      "scenario": 65,
+      "majority": 60,
+      "estimation": 57,
+      "prediction": 53,
+      "random": 45,
+      "brain": 60
+    },
+    "missing": [],
+    "badModes": [],
+    "dupIds": [],
+    "dupPrompts": [],
+    "structuralIssues": []
+  },
+  "behavior": {
+    "modeCounts": {
+      "pick_one": 149,
+      "knowledge": 134,
+      "scenario": 65,
+      "estimation": 57,
+      "prediction": 53,
+      "random": 45,
+      "brain": 60
+    },
+    "dailyIds": {
+      "pick": "between_0264",
+      "knowledge": "between_0403",
+      "chaos": "between_0560"
+    }
+  },
+  "security": {
+    "dangerousConstructs": [],
+    "dynamicHtmlReview": []
+  },
+  "summary": {
+    "pass": 52,
+    "warn": 1,
+    "fail": 0
+  }
+}

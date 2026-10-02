@@ -1,0 +1,48 @@
+{
+  "phase": "2D",
+  "result": "PASS",
+  "checks": {
+    "stale_finish_guard": "PASS",
+    "stage_scoped_schedules": "PASS",
+    "generic_stage_deadline": "PASS",
+    "navigation_cancels_brain": "PASS",
+    "brain_engine_cancel_api": "PASS",
+    "double_completion_app_guard": "PASS",
+    "double_click_stage_guards": "PASS",
+    "classification_transition_invalidates_timer": "PASS",
+    "brain_run_timer_cleanup": "PASS",
+    "brain_run_cancel_api": "PASS",
+    "no_brain_math_random_generation": "PASS",
+    "daily_seed_is_date_based": "PASS",
+    "daily_difficulty_fixed": "PASS",
+    "reduced_motion_does_not_change_timing": "PASS",
+    "no_iq_claims": "PASS",
+    "brain_stats_local": "PASS",
+    "brain_not_library_completion": "PASS",
+    "brain_pwa_cache_current": "PASS",
+    "brain_completion_owns_next_ui": "PASS",
+    "memory_grid_lifecycle_recovery": "PASS",
+    "memory_grid_arm_is_stage_scoped": "PASS",
+    "cancel_clears_scheduled_timer": "PASS",
+    "run_advances_stage_once_per_completion": "PASS",
+    "all_player_brain_types_rendered": "PASS",
+    "brain_completion_callback_runtime": "PASS"
+  },
+  "timerSimulation": {
+    "afterCancelPendingTimers": 0,
+    "run2": {
+      "firstStageIndex": 1,
+      "finalActive": false
+    }
+  },
+  "generatorStress": {
+    "cases": 10000,
+    "types": 20,
+    "levels": [
+      1,
+      5
+    ]
+  },
+  "issues": [],
+  "notes": []
+}

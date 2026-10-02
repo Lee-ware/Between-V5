@@ -1,0 +1,39 @@
+{
+  "phase": "2B",
+  "result": "FAIL",
+  "counts": {
+    "pick_one": 150,
+    "knowledge": 99,
+    "scenario": 75,
+    "estimation": 100,
+    "prediction": 100,
+    "random": 100
+  },
+  "intermediate_total": 744,
+  "prediction_shapes": {
+    "binary": 81,
+    "numeric": 10,
+    "list": 9
+  },
+  "estimation_kinds": {
+    "range": 17,
+    "exact": 71,
+    "lower_bound": 3,
+    "text": 9
+  },
+  "random_shapes": {
+    "open": 90,
+    "list": 10
+  },
+  "source_sha256": "e7e5f485d64c3d10d819211ab3f037d7a2491551cee96840d602af363110c1c4",
+  "notes": [
+    "46 prediction records intentionally have no explicit source window; no dates were invented."
+  ],
+  "issues": [
+    "intermediate item count expected 784 (624 normal + 100 archive + 60 temporary Brain), found 744",
+    "content version expected 3.1, found 3.3",
+    "service worker does not cache Phase 2B prediction layer",
+    "version constants not bumped for Phase 2B",
+    "storage schema/prediction migration incomplete"
+  ]
+}

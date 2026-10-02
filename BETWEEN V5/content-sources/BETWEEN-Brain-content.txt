@@ -1,0 +1,1053 @@
+BRAIN
+
+This is where BETWEEN stops asking, “What do you think?” and starts saying:
+
+> “Okay. Let's see how quickly you can actually do it.”
+
+
+
+I deliberately built this as a mini-game lab, not “trivia but faster.”
+
+The mechanics are inspired by established task formats such as visual change detection, sequence recall, spatial memory, go/no-go inhibition, and task switching. These are useful game mechanics, but BETWEEN should not claim that its scores measure intelligence or improve someone's brain. Research shows these tasks can measure specific performance dimensions, while broad “brain training makes you smarter” claims are much harder to justify. 
+
+
+---
+
+BRAIN 01 — CODE BREAKER
+
+The idea
+
+A visual grid contains symbols.
+
+One symbol is the target.
+
+The player must find it as quickly as possible.
+
+Example
+
+┌───┬───┬───┬───┐
+│ ▲ │ ● │ ■ │ ◆ │
+├───┼───┼───┼───┤
+│ ◆ │ ▲ │ ● │ ■ │
+├───┼───┼───┼───┤
+│ ■ │ ◆ │ ▲ │ ● │
+├───┼───┼───┼───┤
+│ ● │ ■ │ ◆ │ ▲ │
+└───┴───┴───┴───┘
+
+TARGET: ◆
+
+Tap it.
+
+Difficulty
+
+Level 1 → 3×3
+Level 2 → 4×4
+Level 3 → 5×5
+Level 4 → 6×6
+Level 5 → one decoy looks almost identical
+
+Score
+
+score = accuracy × speed multiplier
+
+Wrong tap = penalty.
+
+
+---
+
+BRAIN 02 — MEMORY GRID
+
+This is the classic “watch carefully” game.
+
+A few cells flash.
+
+Then everything disappears.
+
+Player must tap the cells that were lit.
+
+Example
+
+ROUND 1
+
+⬜ 🟦 ⬜
+⬜ ⬜ 🟦
+🟦 ⬜ ⬜
+
+Then:
+
+⬜ ⬜ ⬜
+⬜ ⬜ ⬜
+⬜ ⬜ ⬜
+
+Player reproduces:
+
+⬜ 🟦 ⬜
+⬜ ⬜ 🟦
+🟦 ⬜ ⬜
+
+Progression
+
+3 cells → 4 → 5 → 6 → 7 → 8...
+
+Wrong cell = round failure.
+
+This is based on the general structure of visual working-memory/change-detection tasks, where information is briefly presented and then tested after a delay. 
+
+
+---
+
+BRAIN 03 — SEQUENCE
+
+Numbers appear one at a time.
+
+Player must reproduce the sequence.
+
+7 → 2 → 9 → 4
+
+Then:
+
+7  2  9  4
+
+Difficulty
+
+4 digits
+↓
+5
+↓
+6
+↓
+7
+↓
+8
+
+Then introduce:
+
+letters
+symbols
+mixed sequences
+
+Example:
+
+K → 4 → ▲ → 8 → M
+
+The player taps them in the correct order.
+
+
+---
+
+BRAIN 04 — REVERSE
+
+Same basic mechanic.
+
+But now:
+
+4 → 8 → 2 → 9
+
+must become:
+
+9 → 2 → 8 → 4
+
+Difficulty:
+
+3 items
+4
+5
+6
+7
+
+This should feel noticeably harder than normal Sequence without needing complicated UI.
+
+
+---
+
+BRAIN 05 — RULE SWITCH
+
+This is one of the most important games in the mode.
+
+The player sees a symbol.
+
+The rule changes.
+
+Round 1
+
+Tap BLUE
+
+🔵 → TAP
+🔴 → DON'T
+🟢 → DON'T
+
+Then suddenly:
+
+Round 2
+
+Tap RED
+
+🔵 → DON'T
+🔴 → TAP
+🟢 → DON'T
+
+Then:
+
+Round 3
+
+Tap GREEN
+
+Then:
+
+Round 4
+
+Tap anything EXCEPT blue
+
+Then:
+
+Round 5
+
+Tap the opposite of the previous rule
+
+The player has to continuously update the rule instead of simply repeating a learned response.
+
+Task-switching research specifically studies the cost of changing between rules/tasks and resolving competing response demands. 
+
+
+---
+
+BRAIN 06 — DON'T TAP
+
+A simple-looking trap.
+
+Symbols appear rapidly.
+
+●
+●
+●
+▲
+●
+●
+■
+●
+
+Rule:
+
+> Tap ●. Never tap ▲ or ■.
+
+
+
+Then speed increases.
+
+Later:
+
+TAP ●
+DON'T TAP ●
+
+The rule changes.
+
+Then:
+
+TAP everything except ▲
+
+Then:
+
+TAP only shapes that appeared twice
+
+This becomes an inhibition/control game rather than a reflex game.
+
+Go/no-go paradigms similarly use frequent “go” responses mixed with less frequent “no-go” responses to study response inhibition. 
+
+
+---
+
+BRAIN 07 — ODD ONE
+
+Four objects appear.
+
+Three follow a rule.
+
+One doesn't.
+
+Example
+
+▲ ▲ ▲ ●
+
+Find the odd one.
+
+Then harder:
+
+▲ ▲ ▼ ▲
+
+Then:
+
+↗ ↗ ↗ ↘
+
+Then:
+
+● ● ○ ●
+
+Then the evil version:
+
+⬛ ⬛ ⬛ ⬛
+
+One is 1% different.
+
+The point isn't knowledge.
+
+It's visual discrimination.
+
+
+---
+
+BRAIN 08 — CHANGE DETECTIVE
+
+Two scenes appear.
+
+The second has changed one thing.
+
+Player must identify it.
+
+Example
+
+IMAGE A
+
+☀️   🏠   🌳
+🐕   🚗   ☁️
+
+IMAGE B
+
+☀️   🏠   🌳
+🐕   🚲   ☁️
+
+Answer:
+
+> The car became a bicycle.
+
+
+
+Later:
+
+4 objects
+
+6 objects
+
+8 objects
+
+multiple colours
+
+subtle positional changes
+
+one object disappears
+
+two objects swap
+
+
+This is another direct use of change-detection logic used in visual working-memory research. 
+
+
+---
+
+BRAIN 09 — FLASH RECALL
+
+Show information for an extremely short time.
+
+Example:
+
+3 8 1 7 4 9
+
+Display for:
+
+1.2 seconds
+
+Then:
+
+What was the 4th number?
+
+Answer:
+
+7
+
+Later:
+
+What was the 2nd number?
+What was the last number?
+Was 6 present?
+
+Eventually:
+
+3 8 1 7 4 9
+
+Which changed?
+
+3 8 1 7 5 9
+
+
+---
+
+BRAIN 10 — WHERE WAS IT?
+
+Objects appear in different positions.
+
+Example:
+
+🔴
+
+          ▲
+
+
+  🟦
+
+Everything disappears.
+
+Question:
+
+> Where was the 🔴?
+
+
+
+Player taps the correct location.
+
+Then:
+
+> Where was the ▲?
+
+
+
+Then:
+
+> Which object was closest to the blue square?
+
+
+
+This introduces spatial relationships rather than pure recall.
+
+
+---
+
+BRAIN 11 — PATH
+
+A path briefly lights up.
+
+⬜ 🟦 ⬜ ⬜
+⬜ 🟦 🟦 ⬜
+⬜ ⬜ 🟦 ⬜
+⬜ ⬜ 🟦 🟦
+
+It disappears.
+
+Player must recreate the path.
+
+Later:
+
+start → ↑ → → → ↓ → ↓ → ←
+
+The player taps the same route.
+
+Eventually the path becomes long enough that one wrong move kills the round.
+
+
+---
+
+BRAIN 12 — SORT IT
+
+Objects appear one at a time.
+
+The player must place them into categories.
+
+Example:
+
+APPLE
+CAR
+BANANA
+BUS
+ORANGE
+TRAIN
+
+Rules:
+
+LEFT  = FOOD
+RIGHT = TRANSPORT
+
+Then the rule changes:
+
+LEFT  = things you can eat
+RIGHT = things you can drive
+
+Then:
+
+LEFT  = starts with a vowel
+RIGHT = starts with a consonant
+
+This becomes increasingly about following the current rule, not memorising one answer.
+
+
+---
+
+BRAIN 13 — NUMBER TRAP
+
+A number appears.
+
+Rule:
+
+> Tap the number that is largest.
+
+
+
+7   3   9   2
+
+Answer:
+
+9
+
+Then:
+
+> Tap the smallest.
+
+
+
+Then:
+
+> Tap the number closest to 5.
+
+
+
+Then:
+
+> Tap the number furthest from 5.
+
+
+
+Then:
+
+> Tap the number that appeared second.
+
+
+
+The visual presentation stays similar while the task changes.
+
+
+---
+
+BRAIN 14 — BETWEEN CODE
+
+This one should feel uniquely BETWEEN.
+
+Four symbols:
+
+▲   ●   ■   ◆
+
+Each symbol secretly represents a number.
+
+At the beginning:
+
+▲ = 2
+● = 7
+■ = 4
+◆ = 9
+
+Then:
+
+▲ ● ◆ ■
+
+Question:
+
+> What is the total?
+
+
+
+Answer:
+
+22
+
+Next round changes the code.
+
+Eventually:
+
+▲ = 3
+● = 8
+■ = 1
+◆ = 6
+
+● ◆ ▲ ■ ●
+
+Player calculates:
+
+8 + 6 + 3 + 1 + 8 = 26
+
+Evil version
+
+The code itself changes halfway through.
+
+▲ = 2
+● = 5
+■ = 8
+◆ = 1
+
+Then:
+
+> CODE UPDATED
+
+
+
+▲ = 7
+● = 3
+■ = 9
+◆ = 4
+
+Now the player has to abandon the old mapping.
+
+This can become one of BETWEEN's signature mechanics.
+
+
+---
+
+BRAIN 15 — MIRROR
+
+Show an arrangement.
+
+Player must select its mirror image.
+
+Example
+
+▲ ●
+■ ◆
+
+Mirror:
+
+● ▲
+◆ ■
+
+Then rotations:
+
+90°
+180°
+270°
+
+Eventually use asymmetric shapes so the answer isn't immediately obvious.
+
+
+---
+
+BRAIN 16 — THE NEXT THING
+
+Give a sequence.
+
+Player chooses what comes next.
+
+Easy
+
+2 → 4 → 6 → 8 → ?
+
+10
+
+Medium
+
+3 → 6 → 12 → 24 → ?
+
+48
+
+Hard
+
+1 → 1 → 2 → 3 → 5 → ?
+
+8
+
+Weird
+
+▲ → ▲▲ → ▲▲▲ → ▲▲▲▲ → ?
+
+▲▲▲▲▲
+
+Then visual patterns:
+
+○
+○○
+●○
+●●○
+●●●○
+?
+
+The important rule:
+
+There should generally be one intended pattern.
+
+No “well technically you could interpret it five ways” puzzles.
+
+
+---
+
+BRAIN 17 — RAPID SORT
+
+Objects appear extremely quickly.
+
+Example:
+
+🍎
+🚗
+🍌
+🚲
+🍊
+🚌
+
+Rule:
+
+LEFT  = food
+RIGHT = transport
+
+Player has perhaps 1.5 seconds per item.
+
+Then:
+
+LEFT  = things that are red
+RIGHT = things that aren't red
+
+Then:
+
+LEFT  = things that move
+RIGHT = things that don't
+
+The difficulty comes from speed + changing rules.
+
+
+---
+
+BRAIN 18 — MEMORY + DISTRACTION
+
+This combines several mechanics.
+
+Remember:
+
+🔵 🔴 🟢 🟡
+
+Then a distraction appears:
+
+> WHICH COLOUR WAS THIRD?
+
+
+
+But the answer buttons are:
+
+🟡 🟢 🔴 🔵
+
+Later:
+
+> Which colour appeared immediately before yellow?
+
+
+
+Later:
+
+> Which colour was NOT shown?
+
+
+
+This makes the player actually maintain information rather than simply recognising it.
+
+
+---
+
+BRAIN 19 — ONE SECOND
+
+This mode should be brutally simple.
+
+The screen flashes:
+
+★
+
+for 1 second.
+
+Then:
+
+How many?
+
+Next:
+
+★ ★ ★ ★
+
+Next:
+
+● ▲ ● ■ ●
+
+Question:
+
+> How many circles?
+
+
+
+Then:
+
+▲ ● ■ ● ▲ ● ■ ▲
+
+> How many ▲?
+
+
+
+Time gets shorter.
+
+
+---
+
+BRAIN 20 — FINAL BOSS: BETWEEN
+
+A 60–90 second mixed challenge.
+
+Stage 1
+
+Memory
+
+🟦 🟨 🟥 🟩
+
+Remember it.
+
+Stage 2
+
+Rule
+
+> Tap everything BLUE.
+
+
+
+Stage 3
+
+Sequence
+
+8 → 3 → 7 → 1
+
+Stage 4
+
+Change
+
+Find what changed.
+
+Stage 5
+
+Code
+
+▲ = 4
+● = 7
+■ = 2
+
+▲ ● ■ = ?
+
+Stage 6
+
+Rule switch
+
+> Now tap everything EXCEPT blue.
+
+
+
+Stage 7
+
+Memory
+
+Reproduce the original colours.
+
+Stage 8
+
+Final
+
+A 5×5 grid appears for a fraction of a second.
+
+Player must identify:
+
+> Which square changed?
+
+
+
+
+---
+
+BRAIN SCORING
+
+Do not make one giant number called:
+
+> “Your IQ: 127”
+
+
+
+Absolutely not.
+
+Instead:
+
+BRAIN RUN
+
+Accuracy      87%
+Speed         74%
+Memory        81%
+Switching     69%
+Consistency   92%
+
+Then:
+
+> Your strongest run: Memory
+
+
+
+or:
+
+> You were fast. Your accuracy wasn't impressed.
+
+
+
+Or:
+
+> You survived 8 rule changes before your brain filed a complaint.
+
+
+
+These are game stats, not psychological assessments.
+
+Research on visual working memory supports the idea that performance can vary with load and task demands; it does not justify turning a casual game score into a general intelligence diagnosis. 
+
+
+---
+
+BRAIN DIFFICULTY SYSTEM
+
+Don't simply make everything faster.
+
+Increase difficulty through different dimensions:
+
+MEMORY
+3 items → 4 → 5 → 6 → 7
+
+SPEED
+1500ms → 1200 → 900 → 700 → 500
+
+DISTRACTION
+none → minor → similar → misleading
+
+RULES
+1 → 2 → switching → conflicting
+
+VISUAL LOAD
+3×3 → 4×4 → 5×5 → 6×6
+
+SEQUENCE
+4 → 5 → 6 → 7 → 8
+
+COMBINATION
+one mechanic → two → three
+
+That gives BETWEEN a huge amount of replayability without needing thousands of hand-written questions.
+
+
+---
+
+THE BRAIN CONTENT FORMAT
+
+For the eventual data structure, each game can follow something like:
+
+{
+  id: "brain-code-001",
+  type: "code",
+  difficulty: 2,
+  duration: 45,
+  mechanic: "symbol_mapping",
+  rounds: [...]
+}
+
+And a round can contain:
+
+{
+  prompt: "...",
+  data: [...],
+  answer: "...",
+  timeLimit: 3000
+}
+
+The engine generates variations rather than requiring you to manually create every single round.
+
+That is important.
+
+For example, you don't need 500 manually written Memory Grid questions. The system can randomly generate valid grids while controlling:
+
+gridSize
+numberOfTargets
+displayTime
+delay
+difficulty
+seed
+
+That gives you practically unlimited rounds from a relatively small amount of content.
+
+
+---
+
+BRAIN SESSION STRUCTURE
+
+A normal Brain run:
+
+START
+ ↓
+Code Breaker
+ ↓
+Memory Grid
+ ↓
+Sequence
+ ↓
+Rule Switch
+ ↓
+Odd One
+ ↓
+Change Detective
+ ↓
+Between Code
+ ↓
+Final Challenge
+ ↓
+RESULT
+
+But never use the same sequence every time.
+
+Instead:
+
+RUN A
+Memory → Code → Switch → Odd → Sequence
+
+RUN B
+Path → Flash → Code → Change → Switch
+
+RUN C
+Sequence → Mirror → Memory → Between Code → Rapid Sort
+
+The player shouldn't know what they're getting.
+
+
+---
+
+THE MOST IMPORTANT RULE
+
+BRAIN should never say:
+
+> “Train your brain and become smarter.”
+
+
+
+It should say things like:
+
+> “How long can you stay locked in?”
+
+
+
+> “Your memory is about to get tested.”
+
+
+
+> “Okay. That rule just changed.”
+
+
+
+> “You were given one job.”
+
+
+
+> “That was unnecessarily difficult.”
+
+
+
+> “Again?”
+
+
+
+That keeps it fun instead of making unsupported cognitive-enhancement promises.
+
+And because the mechanics themselves can generate new valid rounds, Brain becomes the one BETWEEN mode that can effectively have infinite content rather than needing an enormous question database.
